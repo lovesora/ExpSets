@@ -1,0 +1,15 @@
+@import "../../css/variables";
+.post-read {
+    &__quote {
+        background-color: lighten($divider-color, 22%);
+        p {
+            margin: 6px 0;
+        }
+    }
+    &__content {
+        p {
+            text-indent: 2em;
+            font-size: 13px;
+        }
+    }
+}

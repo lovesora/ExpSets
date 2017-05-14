@@ -1,0 +1,14 @@
+.app-login {
+    &__content {
+        padding-bottom: 0px !important;
+    }
+    &__auxiliary {
+        margin-top: 16px;
+    }
+    &__btn {
+        &-login {
+            margin-right: 16px !important;
+            margin-left: 16px !important;
+        }
+    }
+}

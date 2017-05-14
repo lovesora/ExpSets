@@ -1,0 +1,15 @@
+@import "../../css/_variables.scss";
+.app-header {
+    &__logo-link {
+        margin-top: 8px;
+    }
+}
+
+.side-nav {
+    .userView {
+        // drawer
+        .background {
+            background-color: $primary-color;
+        }
+    }
+}

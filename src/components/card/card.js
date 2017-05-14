@@ -1,0 +1,87 @@
+import "./card.scss";
+class CardItem extends React.Component {
+    constructor(...args) {
+        super(...args);
+    }
+
+    render() {
+        return <div className="col s12 m6 l4 xl3">
+            <div className="card hoverable">
+                <div className="card-img-container card-image">
+                    <img className="card-img" src={this.props.titleImgUrl} />
+                    <span className="card-title">Card Title</span>
+                </div>
+                <div className="card-content">
+                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                    <div className="divider" style={{margin: "8px 0"}}></div>
+                    <div className="chip">
+                        <img src="../../assets/icons/social-css3.svg" />css3
+                    </div>
+                    <div className="chip">
+                        <img src="../../assets/icons/social-html5.svg" />html5
+                    </div>
+                </div>
+                <div className="card-action right-align">
+                    <a className="waves-effect waves-light btn-flat" href="../post/html/article.html">阅读</a>
+                </div>
+            </div>
+        </div>;
+    }
+}
+
+class Pagination extends React.Component {
+    constructor(...args) {
+        super(...args);
+    }
+
+    render() {
+        return <ul className="pagination center-align">
+            <li className="disabled"><a href="#!"><i className="material-icons">chevron_left</i></a></li>
+            <li className="active"><a href="#!">1</a></li>
+            <li className="waves-effect"><a href="#!">2</a></li>
+            <li className="waves-effect"><a href="#!">3</a></li>
+            <li className="waves-effect"><a href="#!">4</a></li>
+            <li className="waves-effect"><a href="#!">5</a></li>
+            <li className="waves-effect"><a href="#!">6</a></li>
+            <li className="waves-effect"><a href="#!">7</a></li>
+            <li className="waves-effect"><a href="#!">8</a></li>
+            <li className="waves-effect"><a href="#!">9</a></li>
+            <li className="waves-effect"><a href="#!">10</a></li>
+            <li className="waves-effect"><a href="#!">10</a></li>
+            <li className="waves-effect"><a href="#!">11</a></li>
+            <li className="waves-effect"><a href="#!">12</a></li>
+            <li className="waves-effect"><a href="#!">13</a></li>
+            <li className="waves-effect"><a href="#!">14</a></li>
+            <li className="waves-effect"><a href="#!">15</a></li>
+            <li className="waves-effect"><a href="#!">16</a></li>
+            <li className="waves-effect"><a href="#!">17</a></li>
+            <li className="waves-effect"><a href="#!">18</a></li>
+            <li className="waves-effect"><a href="#!">19</a></li>
+            <li className="waves-effect"><a href="#!">20</a></li>
+            <li className="waves-effect"><a href="#!">21</a></li>
+            <li className="waves-effect"><a href="#!">22</a></li>
+            <li className="waves-effect"><a href="#!">23</a></li>
+            <li className="waves-effect"><a href="#!">24</a></li>
+            <li className="waves-effect"><a href="#!"><i className="material-icons">chevron_right</i></a></li>
+        </ul>;
+    }
+}
+
+export class CardList extends React.Component {
+    constructor(...args) {
+        super(...args);
+        this.cardItems = [];
+        for (let i = 0; i < 6; i++) {
+            this.cardItems[i] = <CardItem titleImgUrl={"../../assets/imgs/img-card-" + (i+1) + ".jpg"} />
+        }
+    }
+
+    render() {
+        return <div>
+            <div className="row">
+                {this.cardItems}
+            </div>
+            <Pagination />
+        </div>;
+    }
+}
