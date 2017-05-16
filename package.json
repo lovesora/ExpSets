@@ -2,9 +2,17 @@
   "name": "exp-sets",
   "version": "1.0.0",
   "description": "graduation project",
-  "main": "index.js",
+  "main": "src/app/router.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:dev": "webpack-dev-server --inline --content-base --history-api-fallback",
+    "start:prod": "webpack -p && node server.js",
+    "start-srv": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start-srv:dev": "webpack-dev-server --inline --content-base --history-api-fallback",
+    "start-srv:prod": "npm run build && node server.bundle.js",
+    "build:client": "webpack -p",
+    "build:server": "webpack --config webpack.server.config.js",
+    "build": "npm run build:client && npm run build:server"
   },
   "repository": {
     "type": "git",
@@ -30,6 +38,7 @@
     "moment": "^2.18.1",
     "node-sass": "^4.5.2",
     "path": "^0.12.7",
+    "react-router": "3.0.2",
     "resolve-url-loader": "^2.0.2",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.17.0",

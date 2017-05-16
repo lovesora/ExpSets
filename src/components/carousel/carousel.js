@@ -1,4 +1,5 @@
 import "./carousel.scss";
+import RouteUrls from '../../js/routes/routes.js';
 class CarouselItem extends React.Component {
     constructor(...args) {
         super(...args);
@@ -23,6 +24,10 @@ export class Carousel extends React.Component {
         for (let i = 1; i < 4; i++) {
             this.items[i] = <CarouselItem bgUrl={"url(../../assets/imgs/carousel_" + i + ".jpg) center no-repeat"} />;
         }
+
+        this.style = RouteUrls.root == this.props.location.pathname ? {
+            marginTop: "-64px"
+        }: {};
     }
 
     componentDidMount() {
@@ -30,7 +35,7 @@ export class Carousel extends React.Component {
     }
 
     render() {
-        return <div id={this.props.id} className="carousel__container">
+        return <div id={this.props.id} className="carousel__container" style={this.style}>
             <div className="carousel carousel-slider center" data-indicators="true">
                 {this.items}
             </div>

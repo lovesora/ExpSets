@@ -7,6 +7,7 @@ class Paths {
     constructor() {
         this.src = path.resolve(__dirname, "src");
         this.dist = path.resolve(__dirname, "dist");
+        this.srv = path.resolve(__dirname, "src");
         // this.vendor = path.resolve(__dirname, "node_modules");
         // this.js = {
         //     dir: path.resolve(__dirname, "src/js"),
@@ -25,7 +26,8 @@ var config = {
     context: paths.src,
     entry: {
         //所有文件会按数组顺序一起打包到 dist/app.bundle.js 一个文件当中。
-        app: ['./js/app.js' ,'./app/home/index.js', './app/post/post.js', './app/post/read.js']
+        // app: ['./js/app.js' ,'./app/home/index.js', './app/post/post.js', './app/post/read.js']
+        router: './js/router.js'
     },
     output: {
         path: paths.dist,
@@ -109,7 +111,7 @@ var config = {
         ]
     },
     devServer: {
-        contentBase: paths.src
+        contentBase: paths.srv
     }
 };
 
