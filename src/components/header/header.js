@@ -1,32 +1,43 @@
 import './header.scss';
 import '../../css/tools.scss';
-import {Login} from '../user/login.js';
-import {Signup} from '../user/signup.js';
+import {
+    Login
+} from '../user/login.js';
+import {
+    Signup
+} from '../user/signup.js';
 import RouteUrls from '../../js/routes/routes.js';
 
 export class Header extends React.Component {
     constructor(...args) {
         super(...args);
+        this.style =  {
+            nav: {
+                transition: RouterUrls.root == this.props.location.pathname ? "background-color .375s" : ""
+            }
+        }
     }
+
     changeBgColor() {
         let winPos = $(window).scrollTop();
         if (winPos) {
             $('nav.app-header__nav').addClass('z-depth-2')
-                                    .removeClass('z-depth-0');
-        } else {
+                .removeClass('z-depth-0');
+        } else {·
             $('nav.app-header__nav').addClass('z-depth-0')
-                                    .removeClass('z-depth-2');
+                .removeClass('z-depth-2');
         }
     }
+
     changeBgColorByCarousel() {
         let winPos = $(window).scrollTop();
         let carouselPos = $('#home-home__carousel').height();
         if (winPos && winPos >= carouselPos) {
             $('nav.app-header__nav').addClass('z-depth-2')
-                                    .removeClass('liuxin-bgc--transparent z-depth-0');
-        } else if (winPos < carouselPos){
+                .removeClass('liuxin-bgc--transparent z-depth-0');
+        } else if (winPos < carouselPos) {
             $('nav.app-header__nav').addClass('liuxin-bgc--transparent z-depth-0')
-                                    .removeClass('z-depth-2');
+                .removeClass('z-depth-2');
         }
     }
 
@@ -62,10 +73,9 @@ export class Header extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         return <div>
             <div className="app-header navbar-fixed">
-                <nav className="app-header__nav">
+                <nav style{this.style.nav}>
                     <div className="nav-wrapper">
                         <a href="#" data-activates="app-nav__slide-out" className="button-collapse app-header__btn-slide-nav"><i className=" nav-icon-menu material-icons">menu</i></a>
                         <a href="#" className="app-header__logo-link brand-logo">
