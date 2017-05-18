@@ -1,19 +1,19 @@
 import './header.scss';
 import '../../css/tools.scss';
-import {
-    Login
-} from '../user/login.js';
-import {
-    Signup
-} from '../user/signup.js';
+
+import Login from '../user/login.js';
+import Signup from '../user/signup.js';
 import RouteUrls from '../../js/routes/routes.js';
 
-export class Header extends React.Component {
+import imgLogo from '../../assets/imgs/logo.svg';
+import imgHead from '../../assets/imgs/head_img_1.png';
+
+export default class Header extends React.Component {
     constructor(...args) {
         super(...args);
         this.style =  {
             nav: {
-                transition: RouterUrls.root == this.props.location.pathname ? "background-color .375s" : ""
+                transition: RouteUrls.root == this.props.location.pathname ? "background-color .375s" : ""
             }
         }
     }
@@ -23,7 +23,7 @@ export class Header extends React.Component {
         if (winPos) {
             $('nav.app-header__nav').addClass('z-depth-2')
                 .removeClass('z-depth-0');
-        } else {·
+        } else {
             $('nav.app-header__nav').addClass('z-depth-0')
                 .removeClass('z-depth-2');
         }
@@ -75,11 +75,11 @@ export class Header extends React.Component {
     render() {
         return <div>
             <div className="app-header navbar-fixed">
-                <nav style{this.style.nav}>
+                <nav style={this.style.nav}>
                     <div className="nav-wrapper">
                         <a href="#" data-activates="app-nav__slide-out" className="button-collapse app-header__btn-slide-nav"><i className=" nav-icon-menu material-icons">menu</i></a>
                         <a href="#" className="app-header__logo-link brand-logo">
-                            <img src="../../assets/imgs/logo.svg" />
+                            <img src={imgLogo} />
                         </a>
                         <ul className="right hide-on-med-and-down">
                             <li><a href="#">首页</a></li>
@@ -101,7 +101,7 @@ export class Header extends React.Component {
                 <li>
                     <div className="userView">
                         <div className="background"></div>
-                        <a href="#"><img className="circle" src="../../../assets/imgs/head_img_1.png" /></a>
+                        <a href="#"><img className="circle" src={imgHead} /></a>
                         <a href="#"><span className="white-text name">liuxin</span></a>
                         <a href="#"><span className="white-text email">475212506@qq.com</span></a>
                     </div>

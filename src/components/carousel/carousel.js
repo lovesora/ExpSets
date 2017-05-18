@@ -1,12 +1,16 @@
 import "./carousel.scss";
 import RouteUrls from '../../js/routes/routes.js';
+import imgCarousel_1 from '../../assets/imgs/carousel_1.jpg';
+import imgCarousel_2 from '../../assets/imgs/carousel_2.jpg';
+import imgCarousel_3 from '../../assets/imgs/carousel_3.jpg';
+import imgCarousel_4 from '../../assets/imgs/carousel_4.jpg';
 class CarouselItem extends React.Component {
     constructor(...args) {
         super(...args);
     }
 
     render() {
-        return <div style={{background: this.props.bgUrl}} className="carousel-item grey-text" href="#two!">
+        return <div style={{backgroundImage: imgCarousel_1, backgroundPosition: "center", backgroundRepeat: "no-repeat"}} className="carousel-item grey-text" href="#two!">
             <br />
             <br />
             <br />
@@ -17,12 +21,12 @@ class CarouselItem extends React.Component {
     }
 }
 
-export class Carousel extends React.Component {
+export default class Carousel extends React.Component {
     constructor(...args) {
         super(...args);
         this.items = [];
         for (let i = 1; i < 4; i++) {
-            this.items[i] = <CarouselItem bgUrl={"url(../../assets/imgs/carousel_" + i + ".jpg) center no-repeat"} />;
+            this.items[i] = <CarouselItem bgi={imgCarousel_1} />;
         }
 
         this.style = RouteUrls.root == this.props.location.pathname ? {

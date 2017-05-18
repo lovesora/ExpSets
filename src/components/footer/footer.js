@@ -1,15 +1,27 @@
 import "./footer.scss";
-export class Footer extends React.Component {
+export default class Footer extends React.Component {
     constructor(...args) {
         super(...args);
     }
 
     render() {
+        let imgPath = [
+            require('../../assets/imgs/001-github-sign.png'),
+            require('../../assets/imgs/002-social-google-plus-square-button.png'),
+            require('../../assets/imgs/003-twitter-logo-on-black-background.png'),
+            require('../../assets/imgs/004-facebook-logo.png'),
+        ]
+        const ImgIcons = imgPath.map(img => {
+            return <a className="app-footer__social-link grey-text text-lighten-3" href="#!">
+                <img src={img} />
+            </a>
+        })
+        const Imglogo = require('../../assets/imgs/logo.svg');
         return <footer className="app-footer page-footer">
             <div className="container">
                 <div className="row">
                     <div className="col l6 s12">
-                        <h5 className="white-text"><img src="../../assets/imgs/logo.svg" /></h5>
+                        <h5 className="white-text"><img src={Imglogo} /></h5>
                         <p className="grey-text text-lighten-4">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     </div>
                     <div className="col l4 offset-l2 s12">
@@ -36,18 +48,7 @@ export class Footer extends React.Component {
                             <p>Copyright © 2016 ExpSets</p>
                         </div>
                         <div className="footer-copyright__links-container col s12 m6 center">
-                            <a className="app-footer__social-link grey-text text-lighten-3" href="#!">
-                                <img height="100%" src="../../assets/imgs/001-github-sign.png" />
-                            </a>
-                            <a className="app-footer__social-link grey-text text-lighten-3" href="#!">
-                                <img src="../../assets/imgs/002-social-google-plus-square-button.png" />
-                            </a>
-                            <a className="app-footer__social-link grey-text text-lighten-3" href="#!">
-                                <img src="../../assets/imgs/003-twitter-logo-on-black-background.png" />
-                            </a>
-                            <a className="app-footer__social-link grey-text text-lighten-3" href="#!">
-                                <img src="../../assets/imgs/004-facebook-logo.png" />
-                            </a>
+                            {ImgIcons}
                         </div>
                     </div>
                 </div>

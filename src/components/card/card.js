@@ -1,4 +1,8 @@
 import "./card.scss";
+
+import svgSocialCSS3 from '../../assets/icons/social-css3.svg';
+import svgSocialHTML5 from '../../assets/icons/social-html5.svg';
+
 class CardItem extends React.Component {
     constructor(...args) {
         super(...args);
@@ -15,10 +19,10 @@ class CardItem extends React.Component {
                     <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
                     <div className="divider" style={{margin: "8px 0"}}></div>
                     <div className="chip">
-                        <img src="../../assets/icons/social-css3.svg" />css3
+                        <img src={svgSocialCSS3} />css3
                     </div>
                     <div className="chip">
-                        <img src="../../assets/icons/social-html5.svg" />html5
+                        <img src={svgSocialHTML5} />html5
                     </div>
                 </div>
                 <div className="card-action right-align">
@@ -67,12 +71,13 @@ class Pagination extends React.Component {
     }
 }
 
-export class CardList extends React.Component {
+export default class CardList extends React.Component {
     constructor(...args) {
         super(...args);
         this.cardItems = [];
         for (let i = 0; i < 6; i++) {
-            this.cardItems[i] = <CardItem titleImgUrl={"../../assets/imgs/img-card-" + (i+1) + ".jpg"} />
+            let img = require(`../../assets/imgs/img-card-1.jpg`);
+            this.cardItems[i] = <CardItem titleImgUrl={img} />;
         }
     }
 

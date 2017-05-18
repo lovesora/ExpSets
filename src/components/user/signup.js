@@ -1,7 +1,9 @@
 import "../../css/tools.scss";
 import "./signup.scss";
 
-export class Signup extends React.Component {
+import svgLogoBlack from '../../assets/imgs/logo_black.svg';
+
+export default class Signup extends React.Component {
     constructor(...args) {
         super(...args);
     }
@@ -14,7 +16,7 @@ export class Signup extends React.Component {
         return <div className="row liuxin-nom">
             <div id={this.props.id} className="app-signup modal col s10 offset-s1 m8 offset-m2 l6 offset-l3 xl4 offset-xl4">
                 <div className="modal-content">
-                    <h4 className="center"><img src="../../../assets/imgs/logo_black.svg" /></h4>
+                    <h4 className="center"><img src={svgLogoBlack} /></h4>
                     <form action="#">
                         <div className="input-field">
                             <i className="material-icons prefix">account_circle</i>
