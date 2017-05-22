@@ -1,4 +1,9 @@
 import "./carousel.scss";
+
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { eleFinished } from '../../redux/actions/ac_header.js';
+
 import RouteUrls from '../../js/routes/routes.js';
 import imgCarousel_1 from '../../assets/imgs/carousel_1.jpg';
 import imgCarousel_2 from '../../assets/imgs/carousel_2.jpg';
@@ -21,7 +26,7 @@ class CarouselItem extends React.Component {
     }
 }
 
-export default class Carousel extends React.Component {
+class Carousel extends React.Component {
     constructor(...args) {
         super(...args);
         this.items = [];
@@ -36,13 +41,24 @@ export default class Carousel extends React.Component {
 
     componentDidMount() {
         $('.carousel.carousel-slider').carousel({ fullWidth: true });
+
+        let { eleFinished } = this.props;
+        eleFinished('.carousel__container');
     }
 
     render() {
-        return <div id={this.props.id} className="carousel__container" style={this.style}>
+        return <div className="carousel__container" style={this.style}>
             <div className="carousel carousel-slider center" data-indicators="true">
                 {this.items}
             </div>
         </div>;
     }
 }
+
+let mapStateToProps = state => {
+    return {};
+};
+
+let mapDispatchToProps = dispatch => bindActionCreators({ eleFinished }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Carousel);

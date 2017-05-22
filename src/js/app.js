@@ -10,17 +10,17 @@ import '../css/style.scss';
 
 // Components
 import Header from '../components/header/header.js';
+import Login  from '../components/user/login.js';
+import Signup from '../components/user/signup.js';
 import Footer from '../components/footer/footer.js';
 
 export default class App extends React.Component {
-    constructor(...args) {
-        super(...args);
-    }
-
     render() {
         return (
             <div>
-                <Header {...this.props} />
+                <Header />
+                <Login />
+                <Signup />
                 {this.props.children}
                 <Footer />
             </div>

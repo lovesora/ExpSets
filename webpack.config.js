@@ -22,7 +22,7 @@ var config = {
     devtool: 'source-map',
     context: paths.context,
     entry: {
-        app: './js/router.js'
+        app: ['babel-polyfill', './js/router.js']
     },
     output: {
         path: paths.output.path,
@@ -37,7 +37,8 @@ var config = {
         // }),
         new webpack.ProvidePlugin({
             React: "react",
-            ReactDOM: "react-dom"
+            ReactDOM: "react-dom",
+            Cookies: "js-cookie"
         }),
         // 默认情况下，React 将会在开发模式，很缓慢，在生产模式下使用 React，不会产生warning，并且速度较快
         new webpack.DefinePlugin({
@@ -61,7 +62,7 @@ var config = {
             use: [{
                 loader: "babel-loader",
                 options: {
-                    presets: ["es2015", "react"],
+                    presets: ["es2015", "stage-3", "react"],
                     plugins: [
                     // es6默认使用严格模式，所以一些采用非严格模式的第三方库会报错，禁用严格模式：
                         ["transform-remove-strict-mode"]

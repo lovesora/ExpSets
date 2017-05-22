@@ -5,7 +5,7 @@ export default class Home extends React.Component {
     render() {
         return (
             <div>
-                <Carousel id="home-home__carousel" {...this.props} />
+                <Carousel {...this.props} />
                 <CardList />
             </div>
         )
