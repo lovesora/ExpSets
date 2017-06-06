@@ -1,0 +1,10 @@
+@import '~materialize-css/sass/components/color';
+@import '~materialize-css/sass/components/variables';
+.drawer__link--active {
+    .drawer-item {
+        color: $secondary-color !important;
+        svg {
+            fill: $secondary-color !important;
+        }
+    }
+}

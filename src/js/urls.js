@@ -14,5 +14,11 @@ export default {
             type: 'GET',
             url: host + '/user'
         }
+    },
+    home: {
+        carouselImgs: {
+            type: 'GET',
+            url: host + '/assets'
+        }
     }
 }

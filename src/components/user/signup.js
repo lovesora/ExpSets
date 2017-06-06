@@ -7,8 +7,8 @@ import { toggleLogin, toggleSignup } from '../../redux/actions/ac_modal.js';
 
 import Verify from '../../js/tools/Verify.js';
 
-import resources from '../../js/resouces.js';
-import urls from '../../js/urls.js';
+import resources from '../../js/constants/resouces.js';
+import urls from '../../js/constants/urls.js';
 
 class Signup extends React.Component {
     constructor(...args) {

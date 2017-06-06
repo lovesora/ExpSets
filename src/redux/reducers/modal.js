@@ -4,12 +4,12 @@ export default (state = {}, action) => {
     switch (action.type) {
         case AT_MODAL.TOGGLE.LOGIN: {
             return {...state, toggle: {
-                isLogin: action.payload
+                openLogin: action.payload
             }};
         }
         case AT_MODAL.TOGGLE.SIGNUP: {
             return {...state, toggle: {
-                isSignup: action.payload
+                openSignup: action.payload
             }};
         }
         default:

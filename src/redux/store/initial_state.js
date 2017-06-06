@@ -1,13 +1,21 @@
 export default {
     modal: {
         toggle: {
-            login: false,
-            signup: false
+            openLogin: false,
+            openSignup: false
         }
     },
     header: {
         changeBgc: {
             byEle: ''
         }
+    },
+    drawer: {
+        isOpen: false
+    },
+    user: {
+        logged: !!Cookies.get('currUser')
+    },
+    snackbar: {
     }
 }

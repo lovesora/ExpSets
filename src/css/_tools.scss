@@ -1,0 +1,25 @@
+.liuxin {
+    &-hoverable {
+        transition: box-shadow .25s;
+        box-shadow: 0;
+        &:hover {
+            box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    }
+    &-no {
+        &pb {
+            padding-bottom: 0px !important;
+        }
+        &m {
+            margin: 0px !important;
+        }
+        &mb {
+            margin-bottom: 0px !important;
+        }
+    }
+    &-bgc {
+        &--transparent {
+            background-color: rgba(0, 0, 0, 0);
+        }
+    }
+}

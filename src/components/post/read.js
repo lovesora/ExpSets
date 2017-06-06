@@ -1,11 +1,29 @@
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import IconButton from 'material-ui/IconButton';
+import ActionHome from 'material-ui/svg-icons/action/home';
+import Snackbar from 'material-ui/Snackbar';
+
+
 import "./read.scss";
 export class Read extends React.Component {
     constructor(...args) {
         super(...args);
+        this.state = {
+            isOpen: false,
+            msg: '收藏成功！'
+        }
     }
 
     render() {
         return <div className="post-read">
+            <MuiThemeProvider>
+                <Snackbar
+                  open              ={this.state.isOpen}
+                  message           ={this.state.msg}
+                  autoHideDuration  ={4000}
+                  bodyStyle         ={{textAlign: 'center'}}
+                />
+            </MuiThemeProvider>
             <div className="post-read__title">
                 <h3 className="flow-text">webpack多页应用架构系列（一）：一步一步解决架构痛点</h3>
                 <div className="chip">
@@ -18,6 +36,13 @@ export class Read extends React.Component {
                     By: array_huang
                 </div>
                 <div className="date chip">2016年09月07日发布</div>
+                <img style={{paddingTop: '12px'}} height="32" src="../../assets/icons/heart.svg" ref={ img => {
+                    $(img).click(() => {
+                        this.setState({
+                            isOpen: true
+                        })
+                    });
+                }} />
             </div>
             <blockquote className="post-read__quote">
                 <p>本文首发于Array_Huang的技术博客——实用至上，非经作者同意，请勿转载。</p>

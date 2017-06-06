@@ -1,9 +1,18 @@
-import {Post} from '../../components/post/post.js';
+//material ui provider
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+
+//component
+import Post from '../../components/post/mui-post.js';
+
+
 export default React.createClass({
   render() {
     return (
       <div>
-        <Post />
+        <MuiThemeProvider>
+            <Post />
+        </MuiThemeProvider>
       </div>
     )
   }

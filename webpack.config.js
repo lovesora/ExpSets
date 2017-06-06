@@ -22,6 +22,7 @@ var config = {
     devtool: 'source-map',
     context: paths.context,
     entry: {
+        //babel-polyfill是为了支持async/await语法
         app: ['babel-polyfill', './js/router.js']
     },
     output: {
@@ -58,20 +59,7 @@ var config = {
     },
     module: {
         rules: [{
-            test: /\.js$/,
-            use: [{
-                loader: "babel-loader",
-                options: {
-                    presets: ["es2015", "stage-3", "react"],
-                    plugins: [
-                    // es6默认使用严格模式，所以一些采用非严格模式的第三方库会报错，禁用严格模式：
-                        ["transform-remove-strict-mode"]
-                    ],
-                    sourceMaps: true
-                }
-            }]
-        }, {
-            // test: require.resolve('jquery_v2'),
+            // 模块必须在你的 bundle 中被 require() 过，否则他们将不会被暴露！！！
             test: require.resolve('jquery'),
             use: [{
                 loader: 'expose-loader',
@@ -79,6 +67,19 @@ var config = {
             }, {
                 loader: 'expose-loader',
                 options: 'jQuery'
+            }]
+        }, {
+            test: /\.js$/,
+            use: [{
+                loader: "babel-loader",
+                options: {
+                    presets: ["es2015", "stage-1", "stage-3", "react"],
+                    plugins: [
+                    // es6默认使用严格模式，所以一些采用非严格模式的第三方库会报错，禁用严格模式：
+                        ["transform-remove-strict-mode"]
+                    ],
+                    sourceMaps: true
+                }
             }]
         }, {
             test: /\.css$/,
@@ -90,7 +91,19 @@ var config = {
                 }
             }]
         }, {
-            test: /\.(sass|scss)$/,
+            test: /src[\/\\]components[\/\\].*\.(sass|scss)$/,
+            use: [
+                "style-loader", {
+                    loader: "css-loader",
+                    options: {
+                        modules: true,
+                        url: true
+                    }
+                },
+                "sass-loader?sourceMap"
+            ]
+        }, {
+            test: /(node_modules|src[\/\\]css)[\/\\].*\.(sass|scss)$/,
             use: [
                 "style-loader", {
                     loader: "css-loader",

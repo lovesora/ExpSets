@@ -1,3 +1,9 @@
+//material ui
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+
+
 import "./card.scss";
 
 import svgSocialCSS3 from '../../assets/icons/social-css3.svg';
@@ -6,10 +12,43 @@ import svgSocialHTML5 from '../../assets/icons/social-html5.svg';
 class CardItem extends React.Component {
     constructor(...args) {
         super(...args);
+        this.state = {
+            isOpen: false
+        }
     }
 
     render() {
+        const actions = [
+          <FlatButton
+            label="否"
+            primary={true}
+            onTouchTap={() => {
+                this.setState({
+                    isOpen: false
+                });
+            }}
+          />,
+          <FlatButton
+            label="是"
+            primary={true}
+            onTouchTap={() => {
+                this.setState({
+                    isOpen: false
+                });
+            }}
+          />,
+        ];
+
         return <div className="col s12 m6 l4 xl3">
+            <MuiThemeProvider>
+                <Dialog
+                  actions={actions}
+                  modal={false}
+                  open={this.state.isOpen}
+                >
+                  确认删除文章？
+                </Dialog>
+            </MuiThemeProvider>
             <div className="card hoverable">
                 <div className="card-img-container card-image">
                     <img className="card-img" src={this.props.titleImgUrl} />
@@ -26,7 +65,14 @@ class CardItem extends React.Component {
                     </div>
                 </div>
                 <div className="card-action right-align">
-                    <a className="waves-effect waves-light btn-flat" href="../post/html/article.html">阅读</a>
+                    <a ref={a => {
+                        $(a).click(e => {
+                            e.preventDefault();
+                            this.setState({
+                                isOpen: true
+                            })
+                        });
+                    }} className="waves-effect waves-light btn-flat" href='#'>阅读</a>
                 </div>
             </div>
         </div>;
@@ -75,8 +121,8 @@ export default class CardList extends React.Component {
     constructor(...args) {
         super(...args);
         this.cardItems = [];
-        for (let i = 0; i < 6; i++) {
-            let img = require(`../../assets/imgs/img-card-1.jpg`);
+        for (let i = 0; i < 8; i++) {
+            let img = require(`../../assets/imgs/img-card-0.jpg`);
             this.cardItems[i] = <CardItem titleImgUrl={img} />;
         }
     }

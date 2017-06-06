@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { toggleLogin } from '../../redux/actions/ac_modal.js';
 
-import resources from '../../js/resouces.js';
+import resources from '../../js/constants/resouces.js';
 
 class Header extends React.Component {
     constructor(...args) {

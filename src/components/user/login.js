@@ -1,14 +1,23 @@
 import '../../css/tools.scss';
 import './login.scss';
 
+//react-router
+import { browserHistory } from 'react-router';
+
+
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { toggleLogin, toggleSignup } from '../../redux/actions/ac_modal.js';
+import { logged } from '../../redux/actions/ac_user.js';
 
 import Verify from '../../js/tools/Verify.js';
 
-import resources from '../../js/resouces.js';
-import urls from '../../js/urls.js';
+import resources from '../../js/constants/resouces.js';
+import urls from '../../js/constants/urls.js';
+
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Checkbox from 'material-ui/Checkbox';
 
 class Login extends React.Component {
     constructor(...args) {
@@ -33,8 +42,9 @@ class Login extends React.Component {
 
         let username = $('#app-login__username').val();
         let pw = $('#app-login__pw').val();
+        let code = $('#app-login__verify').val();
 
-        if (!username || !pw) {
+        if (!username || !pw || !code) {
             isPass = false;
         }
 
@@ -97,7 +107,8 @@ class Login extends React.Component {
                             path: '/'
                         });
                         $('.app-login.modal').modal('close');
-                        location.href = '/';
+                        this.props.logged('currUser');
+                        browserHistory.push('/');
                     } else {
                         Materialize.toast('用户名或密码错误！', 4000);
                     }
@@ -143,7 +154,7 @@ class Login extends React.Component {
                             </div>
                         </div>
                         <div className="input-field row">
-                                <div className="col s6">
+                                <div className="col s6" style={{position: 'relative'}}>
                                     <i className="material-icons prefix">verified_user</i>
                                     <input type="text" id="app-login__verify" className="" />
                                     <label for="app-login__verify" data-error="验证码错误" data-success="OK">验证码</label>
@@ -154,8 +165,11 @@ class Login extends React.Component {
                         </div>
                         <div className="app-login__auxiliary row">
                             <div className="col s12 m6 offset-m1">
-                                <input type="checkbox" id="app-login__checkbox-remember" />
-                                <label for="app-login__checkbox-remember">记住登录？</label>
+                                <MuiThemeProvider>
+                                    <Checkbox
+                                        label="记住登录？"
+                                    />
+                                </MuiThemeProvider>
                             </div>
                             <div className="col s8 offset-s4  m4">
                                 <a onClick={() => {
@@ -182,6 +196,6 @@ let mapStateToProps = state => {
     };
 };
 
-let mapDispatchToProps = dispatch => bindActionCreators({ toggleLogin, toggleSignup }, dispatch);
+let mapDispatchToProps = dispatch => bindActionCreators({ toggleLogin, toggleSignup, logged }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
