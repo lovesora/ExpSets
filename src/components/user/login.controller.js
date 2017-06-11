@@ -1,33 +1,26 @@
-//redux
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-//actions
-import { toggleLogin } from '../../redux/actions/ac_modal.js';
-import { logged } from '../../redux/actions/ac_user.js';
-
-
 //view
-import LoginView from './mui-login.js';
+import LoginView from './login.view.js';
 
 
 //material ui
-import Snackbar from 'material-ui/Snackbar';
+  //theme provider
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+
+//redux
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+  //actions
+import { toggleLogin, toggleSignup } from '../../redux/actions/ac_modal.js';
+import { logged } from '../../redux/actions/ac_user.js';
+import { openSnackbar } from '../../redux/actions/ac_snackbar.js';
 
 
 //restful api
-import apis from '../../js/constants/restful-api.js';
+import apis from '../../server/restful-api.js';
 
 
 class LoginController extends React.Component {
-    constructor(...args) {
-        super(...args);
-
-        this.state = {
-            isOpen: false,
-            msg: ''
-        }
-    }
-
     srvLogin(data) {
         return new Promise((resolve, reject) => {
             $.ajax({
@@ -55,31 +48,29 @@ class LoginController extends React.Component {
                 this.props.logged(!!user);
             }
         }
-        this.setState({
-            msg,
-            isOpen: true
-        });
+        this.props.openSnackbar(msg);
     }
 
     render() {
-        return <div>
+        return <MuiThemeProvider>
             <LoginView
-                onClickLogin       = {this.onClickLogin.bind(this)}
+                onClickLogin    = {this.onClickLogin.bind(this)}
+                toggleLogin     = {this.props.toggleLogin}
+                toggleSignup    = {this.props.toggleSignup}
+                isOpen          = {this.props.isOpen}
             />
-            <Snackbar
-              open              ={this.state.isOpen}
-              message           ={this.state.msg}
-              autoHideDuration  ={4000}
-              bodyStyle         ={{textAlign: 'center'}}
-            />
-        </div>;
+        </MuiThemeProvider>;
     }
 }
 
 let mapStateToProps = state => {
-    return {};
+    let isOpen = state.modal.toggle.openLogin;
+
+    return {
+        isOpen
+    };
 };
 
-let mapDispatchToProps = dispatch => bindActionCreators({ toggleLogin, logged }, dispatch);
+let mapDispatchToProps = dispatch => bindActionCreators({ toggleLogin, toggleSignup, logged, openSnackbar }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginController);

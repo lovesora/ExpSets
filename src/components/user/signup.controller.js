@@ -1,33 +1,26 @@
-//redux
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-//actions
-import { toggleSignup } from '../../redux/actions/ac_modal.js';
-import { logged } from '../../redux/actions/ac_user.js';
-
-
 //view
-import SignupView from './mui-signup.js';
+import SignupView from './signup.view.js';
 
 
 //material ui
-import Snackbar from 'material-ui/Snackbar';
+  //theme provider
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+
+//redux
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+  //actions
+import { toggleLogin, toggleSignup } from '../../redux/actions/ac_modal.js';
+import { logged } from '../../redux/actions/ac_user.js';
+import { openSnackbar } from '../../redux/actions/ac_snackbar.js';
 
 
 //restful api
-import apis from '../../js/constants/restful-api.js';
+import apis from '../../server/restful-api.js';
 
 
 class SignupController extends React.Component {
-    constructor(...args) {
-        super(...args);
-
-        this.state = {
-            isOpen: false,
-            msg: ''
-        }
-    }
-
     srvSignup(data) {
         return new Promise((resolve, reject) => {
             $.ajax({
@@ -61,11 +54,9 @@ class SignupController extends React.Component {
     async onClickSignup(data) {
         let result = await this.srvSignup(data);
         let msg = result.error ? console.log(result.error) || '注册失败！' : '注册成功！';
-        this.setState({
-            msg,
-            isOpen: true
-        });
+        this.props.openSnackbar(msg);
         if (result.user) {
+            Cookies.set('currUser', result.user);
             this.props.toggleSignup(false);
             this.props.logged(result.user);
         }
@@ -86,30 +77,28 @@ class SignupController extends React.Component {
     }
 
     render() {
-        return <div>
+        return <MuiThemeProvider>
             <SignupView
+                isOpen              = {this.props.isOpen}
+                toggleLogin         = {this.props.toggleLogin}
+                toggleSignup        = {this.props.toggleSignup}
                 onUsernameChanged   = {this.onUsernameChanged.bind(this)}
-                usernameError       = {this.state.usernameError}
                 onEmailChanged      = {this.onEmailChanged.bind(this)}
-                emailError          = {this.state.emailError}
                 onPwChanged         = {this.onPwChanged.bind(this)}
-                pwError             = {this.state.pwError}
                 onClickSignup       = {this.onClickSignup.bind(this)}
             />
-            <Snackbar
-              open              ={this.state.isOpen}
-              message           ={this.state.msg}
-              autoHideDuration  ={4000}
-              bodyStyle         ={{textAlign: 'center'}}
-            />
-        </div>;
+        </MuiThemeProvider>;
     }
 }
 
 let mapStateToProps = state => {
-    return {};
+    let isOpen = state.modal.toggle.openSignup;
+
+    return {
+        isOpen
+    };
 };
 
-let mapDispatchToProps = dispatch => bindActionCreators({ toggleSignup, logged }, dispatch);
+let mapDispatchToProps = dispatch => bindActionCreators({ toggleLogin, toggleSignup, logged, openSnackbar }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupController);

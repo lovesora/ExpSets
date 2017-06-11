@@ -17,5 +17,13 @@ export default {
         logged: !!Cookies.get('currUser')
     },
     snackbar: {
+        isOpen: false,
+        msg: '',
+        duration: 0
+    },
+    post: {
+        list: {
+            all: []
+        }
     }
 }

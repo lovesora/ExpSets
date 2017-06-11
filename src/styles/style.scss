@@ -1,0 +1,90 @@
+@import './_tools.scss';
+
+
+// //materialize css common imports
+@import '~materialize-css/sass/components/color';
+@import '~materialize-css/sass/components/variables';
+@import '~materialize-css/sass/components/global';
+// //materialize css components
+// @import '~materialize-css/sass/components/forms/select';
+// @import '~materialize-css/sass/components/chips';
+@import '~materialize-css/sass/components/typography';
+@import '~materialize-css/sass/components/grid';
+@import '~materialize-css/sass/components/carousel';
+// @import '~materialize-css/sass/components/cards';
+// @import '~materialize-css/sass/components/waves';
+
+
+// ::-webkit-input-placeholder {
+//   color: $placeholder-text-color;
+// }
+// :-moz-placeholder { /* Firefox 18- */
+//   color: $placeholder-text-color;
+// }
+
+// ::-moz-placeholder {  /* Firefox 19+ */
+//   color: $placeholder-text-color;
+// }
+
+// :-ms-input-placeholder {
+//   color: $placeholder-text-color;
+// }
+
+
+//body
+body {
+    margin: 0;
+}
+
+
+//footer
+.app-footer {
+    &__social-link {
+        margin-left: 10px;
+    }
+
+    .footer-copyright {
+        &__links-container {
+            padding-top: 8.5px !important;
+        }
+    }
+}
+
+
+//react-addons-css-transition-group
+.fadeWrapper-enter {
+  opacity: 0;
+}
+
+.fadeWrapper-enter.fadeWrapper-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.fadeWrapper-leave {
+    opacity: 1 ;
+    transition: opacity 300ms ease-in ;
+}
+
+.fadeWrapper-leave.fadeWrapper-leave-active {
+    opacity: 0;
+}
+
+.fadeWrapper {
+    position: relative;
+}
+
+
+// .card {
+//     &-img {
+//         width: 100%;
+//         &-container {
+//             height: 240px;
+//             overflow-y: hidden;
+//         }
+//     }
+//     &-title {
+//         width: 100%;
+//         background-color: rgba(0, 0, 0, 0.5);
+//     }
+// }

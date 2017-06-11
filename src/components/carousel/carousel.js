@@ -13,7 +13,7 @@ import 'materialize-css/js/carousel.js';
 
 
 //server
-import API from '../../js/constants/restful-api.js';
+import API from '../../server/restful-api.js';
 
 class CarouselItem extends React.Component {
     constructor(...args) {

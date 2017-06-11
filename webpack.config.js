@@ -23,7 +23,7 @@ var config = {
     context: paths.context,
     entry: {
         //babel-polyfill是为了支持async/await语法
-        app: ['babel-polyfill', './js/router.js']
+        app: ['babel-polyfill', './index.js']
     },
     output: {
         path: paths.output.path,
@@ -103,7 +103,7 @@ var config = {
                 "sass-loader?sourceMap"
             ]
         }, {
-            test: /(node_modules|src[\/\\]css)[\/\\].*\.(sass|scss)$/,
+            test: /(node_modules|src[\/\\]styles)[\/\\].*\.(sass|scss)$/,
             use: [
                 "style-loader", {
                     loader: "css-loader",

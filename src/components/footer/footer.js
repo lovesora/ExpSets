@@ -1,4 +1,3 @@
-import "./footer.scss";
 export default class Footer extends React.Component {
     constructor(...args) {
         super(...args);
@@ -12,7 +11,7 @@ export default class Footer extends React.Component {
             require('../../assets/imgs/004-facebook-logo.png'),
         ]
         const ImgIcons = imgPath.map(img => {
-            return <a className="app-footer__social-link grey-text text-lighten-3" href="#!">
+            return <a className="app-footer__social-link grey-text text-lighten-3" href="https://github.com/lovesora">
                 <img src={img} />
             </a>
         })
@@ -22,7 +21,7 @@ export default class Footer extends React.Component {
                 <div className="row">
                     <div className="col l6 s12">
                         <h5 className="white-text"><img src={Imglogo} /></h5>
-                        <p className="grey-text text-lighten-4">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p className="grey-text text-lighten-4">ExpSets是一个基于React技术栈的大学生知识分享平台。</p>
                     </div>
                     <div className="col l4 offset-l2 s12">
                         <h5 className="white-text">Contact Me</h5>
